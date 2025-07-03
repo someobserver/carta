@@ -97,7 +97,7 @@ done
 ## Quick Start
 
 ```python
-from src.autopoietic.pipeline import Pipeline
+from src.carta.pipeline import Pipeline
 
 # Process a ChatGPT export (file-only mode)
 pipeline = Pipeline(store_to_database=False)
