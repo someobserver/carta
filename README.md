@@ -2,7 +2,7 @@
 
 ## Overview
 
-CARTA extracts complete conversation trees, including all branches and alternate paths. It calculates derived metrics for each node, and provides tools for semantic analysis through high-dimensional vector embeddings. The system stores structured conversation data in PostgreSQL with pgvector support, enabling advanced search and analysis capabilities.
+CARTA extracts complete conversation trees, including all branches and alternate paths. It calculates 50+ derived metrics per node/pair and provides tools for semantic analysis through high-dimensional vector embeddings. The system stores structured conversation data in PostgreSQL with pgvector support, enabling advanced search and analysis capabilities.
 
 ## Key Features
 
@@ -26,10 +26,13 @@ CARTA extracts complete conversation trees, including all branches and alternate
 - Combined structural and semantic queries
 
 ### Analytical Framework
-- Semantic drift metrics
-- Branch entropy calculations
-- Coherence scoring
-- Generative potential assessment
+- Semantic drift tracking along conversation paths
+- Divergence analysis via branch entropy computation
+- Coherence scoring between prompt-response pairs
+- Generative potential assessment (node "spark factor")
+- Abstraction delta measurements between turns
+- Dialogic continuity scoring across exchanges
+- Cognitive load signature analysis
 
 ## Technical Architecture
 
@@ -39,10 +42,11 @@ CARTA extracts complete conversation trees, including all branches and alternate
 3. **Database**: Stores structured data with query optimization
 
 ### Database Schema
-- `conversations`: Conversation metadata
-- `nodes`: Individual messages with embeddings
-- `pairs`: Prompt-response relationships
-- `paths`: Conversation ancestry data
+- `conversations`: Conversation metadata and state
+- `nodes`: Individual messages with embeddings and 35+ semantic metrics
+- `pairs`: Prompt-response relationships with 20+ metrics derived from semantic geometry
+- `paths`: Conversation ancestry data with semantic drift tracking
+- 17 specialized SQL functions for vector search and tree traversal
 
 ### Vector Operations
 - HNSW indexing for performance
@@ -89,10 +93,15 @@ cp env.example .env
 
 ### Database Setup (Optional)
 ```bash
+# Apply 11 production migrations (schema + indexes + functions + access control)
 for i in {001..011}; do
   psql -d your_database -f src/carta/db/migrations/${i}_*.sql
 done
 ```
+
+## Documentation
+
+Forthcoming.
 
 ## Quick Start
 
@@ -147,5 +156,15 @@ patterns = query_functions.find_recurring_patterns(
 drift_analysis = query_functions.calculate_semantic_drift(
     conversation_id=conv_id
 )
+
+# Find high-potential generative nodes
+sparks = query_functions.find_semantic_sparks(
+    conversation_id=conv_id,
+    min_spark_factor=0.7
+)
+
+# Branch traversal and alternate path analysis
+branch = query_functions.get_complete_branch(divergence_point_id=node_id)
+paths = query_functions.find_alternate_paths(node_id=node_id, max_depth=3)
 ```
 
