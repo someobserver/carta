@@ -2,7 +2,7 @@
 
 ## Overview
 
-CARTA is a semantic analysis system that parses and reconstructs ChatGPT conversation trees, including all branches and alternative paths. It computes over 50 semantic and structural metrics per node and node pair using high-dimensional vector analysis. The system is a PostgreSQL database with pgvector extension for efficient storage and querying of conversation data with vector similarity operations.
+CARTA parses and reconstructs ChatGPT conversation trees, including all branches and alternative paths. It then computes over 50 semantic and structural metrics per node and node pair using high-dimensional vector analysis. The system operates as a PostgreSQL database with pgvector extension for efficient storage and querying of conversation data with vector similarity operations.
 
 ## Key Features
 
