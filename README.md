@@ -2,7 +2,7 @@
 
 ## Overview
 
-CARTA extracts complete conversation trees, including all branches and alternate paths. It calculates 50+ derived metrics per node/pair and provides tools for semantic analysis through high-dimensional vector embeddings. The system stores structured conversation data in PostgreSQL with pgvector support, enabling advanced search and analysis capabilities.
+CARTA is a semantic analysis system that parses and reconstructs ChatGPT conversation trees, including all branches and alternative paths. It computes over 50 semantic and structural metrics per node and node pair using high-dimensional vector analysis. The system is a PostgreSQL database with pgvector extension for efficient storage and querying of conversation data with vector similarity operations.
 
 ## Key Features
 
@@ -14,25 +14,25 @@ CARTA extracts complete conversation trees, including all branches and alternate
 - Maps full conversation topology
 
 ### Semantic Vector Processing
-- Generates 2000-dim embeddings via OpenAI's text-embedding-3-large
+- Generates 2000-dimensional embeddings via OpenAI's text-embedding-3-large
 - Calculates semantic distances between nodes
 - Measures conceptual drift along conversation paths
 - Identifies high-divergence areas
 
 ### Database Integration
-- PostgreSQL storage with pgvector extension
-- Efficient vector similarity operations
-- Cross-conversation pattern detection
-- Combined structural and semantic queries
+- Provides PostgreSQL storage with pgvector extension
+- Enables efficient vector similarity operations
+- Supports cross-conversation pattern detection
+- Executes combined structural and semantic queries
 
 ### Analytical Framework
-- Semantic drift tracking along conversation paths
-- Divergence analysis via branch entropy computation
-- Coherence scoring between prompt-response pairs
-- Generative potential assessment (node "spark factor")
-- Abstraction delta measurements between turns
-- Dialogic continuity scoring across exchanges
-- Cognitive load signature analysis
+- Tracks semantic drift along conversation paths
+- Analyzes divergence via branch entropy computation
+- Scores coherence between prompt-response pairs
+- Assesses generative potential (node "spark factor")
+- Measures abstraction deltas between turns
+- Scores dialogic continuity across exchanges
+- Analyzes cognitive load signatures
 
 ## Technical Architecture
 
@@ -42,33 +42,33 @@ CARTA extracts complete conversation trees, including all branches and alternate
 3. **Database**: Stores structured data with query optimization
 
 ### Database Schema
-- `conversations`: Conversation metadata and state
-- `nodes`: Individual messages with embeddings and 35+ semantic metrics
-- `pairs`: Prompt-response relationships with 20+ metrics derived from semantic geometry
-- `paths`: Conversation ancestry data with semantic drift tracking
-- 17 specialized SQL functions for vector search and tree traversal
+- `conversations`: Stores conversation metadata and state
+- `nodes`: Stores individual messages with embeddings and 35+ semantic metrics
+- `pairs`: Stores prompt-response relationships with 20+ metrics derived from semantic geometry
+- `paths`: Stores conversation ancestry data with semantic drift tracking
+- Provides 17 specialized SQL functions for vector search and tree traversal
 
 ### Vector Operations
-- HNSW indexing for performance
-- Supports cosine, Euclidean, and inner product metrics
-- Configurable similarity thresholds
+- Utilizes HNSW indexing for performance optimization
+- Supports cosine, Euclidean, and inner product distance metrics
+- Configures similarity thresholds for query precision
 
 ## Query Capabilities
 
 ### Structural Queries
-- Retrieve complete conversation branches
-- Find alternate paths & terminated branches
-- Analyze depth and branching patterns
+- Retrieves complete conversation branches
+- Finds alternate paths and terminated branches
+- Analyzes depth and branching patterns
 
 ### Semantic Search
-- Similarity search across nodes and pairs
-- Cross-conversation pattern detection
-- Semantic clustering
+- Executes similarity search across nodes and pairs
+- Performs cross-conversation pattern detection
+- Enables semantic clustering
 
 ### Combined Analysis
-- Nodes with high semantic divergence
-- Paths with specific characteristics
-- Multi-conversation pattern analysis
+- Identifies nodes with high semantic divergence
+- Analyzes paths with specific characteristics
+- Executes multi-conversation pattern analysis
 
 ## Installation
 
@@ -98,10 +98,6 @@ for i in {001..011}; do
   psql -d your_database -f src/carta/db/migrations/${i}_*.sql
 done
 ```
-
-## Documentation
-
-Forthcoming.
 
 ## Quick Start
 
@@ -138,7 +134,7 @@ similar_nodes = query_functions.find_similar_nodes(
     similarity_threshold=0.7
 )
 
-# Retrieve a complete conversation branch
+# Retrieve complete conversation branch
 branch_data = query_functions.get_complete_branch(
     divergence_point_id=node_id
 )
